@@ -15,23 +15,21 @@ int main()
     {
         result = integral(0, 1, [](double x) {return 4.0 / (1 + x * x); }, true);
     }
+
     double t2 = omp_get_wtime();
+    std::cout << "Time parallel: " << t2 - t1 << "Result: " << result << std::endl;
 
     for (auto i = 0; i < 10000; i++)
     {
         result = integral(0, 1, [](double x) {return 4.0 / (1 + x * x); }, false);
     }
 
-    double t3 = omp_get_wtime();
-
-
-    std::cout << "Time parallel: " << t2 - t1 << std::endl;
-    std::cout << "Time nonParallel: " << t3 - t2 << std::endl;
+    double t3 = omp_get_wtime(); 
+    std::cout << "Time nonParallel: " << t3 - t2 << "Result: " << result << std::endl;    
 }
 
 double integral(double a, double b, double (*func) (double), bool isParallel)
 {
-
     double result = 0;
     int n = 10000;
     double step = (b - a) / (n + 1);
@@ -41,9 +39,6 @@ double integral(double a, double b, double (*func) (double), bool isParallel)
     {
         result += step * func(a + step * i);
     }
-    
-    
 
     return result;
-
 }
