@@ -17,7 +17,7 @@ int main()
     }
 
     double t2 = omp_get_wtime();
-    std::cout << "Time parallel: " << t2 - t1 << "Result: " << result << std::endl;
+    std::cout << "Time parallel: " << t2 - t1 << "   Result: " << result << std::endl;
 
     for (auto i = 0; i < 10000; i++)
     {
@@ -25,7 +25,7 @@ int main()
     }
 
     double t3 = omp_get_wtime(); 
-    std::cout << "Time nonParallel: " << t3 - t2 << "Result: " << result << std::endl;    
+    std::cout << "Time nonParallel: " << t3 - t2 << "   Result: " << result << std::endl;    
 }
 
 double integral(double a, double b, double (*func) (double), bool isParallel)
